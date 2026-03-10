@@ -6,7 +6,7 @@ import org.groupe4.mock.MockABC;
 
 import java.util.Map;
 
-public class ABCReader {
+public class ABCReader implements InputReader {
     private MockABC _mockABC;
     private int _currentId = 0;
 
@@ -20,6 +20,7 @@ public class ABCReader {
         _currentId = startId;
     }
 
+    @Override
     public Product read(int id) {
         Product product = new Product();
         String report = _mockABC.GenerateReport(id);
@@ -36,8 +37,8 @@ public class ABCReader {
         return product;
     }
 
+    @Override
     public Product readNext() {
         return read(_currentId++);
     }
-
 }
