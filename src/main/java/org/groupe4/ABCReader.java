@@ -23,7 +23,7 @@ public class ABCReader implements InputReader {
     @Override
     public Product read(int id) {
         Product product = new Product();
-        String report = _mockABC.GenerateReport(id);
+        String report = _mockABC.genererRapport(id);
 
         ObjectMapper mapper = new ObjectMapper();
         try {
