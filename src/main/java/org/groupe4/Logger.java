@@ -64,4 +64,12 @@ public class Logger {
     public void error(String message) {
         log(LogLevel.ERROR, message);
     }
+
+    public void exception(Throwable e) {
+        StringBuilder sb = new StringBuilder();
+        for (StackTraceElement element : e.getStackTrace()) {
+            sb.append("\tat ").append(element.toString()).append(System.lineSeparator());
+        }
+        error(e.getClass() + ": " + e.getMessage() + System.lineSeparator() + sb.toString());
+    }
 }
