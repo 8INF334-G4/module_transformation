@@ -20,18 +20,18 @@ public class ArticleExternalInterface {
 
         @Named("mapAttributesToName")
         default String mapAttributesToName(Map<String, String> attributes) {
-            if (attributes == null || !attributes.containsKey("name")) {
-                throw new IllegalArgumentException("Attributes must contain a 'name' key");
-            }
-            return attributes.get("name");
+            if (attributes == null) throw new IllegalArgumentException("Attributes map is null");
+            String name = attributes.getOrDefault("name", attributes.get("nom"));
+            if (name == null) throw new IllegalArgumentException("Attributes must contain a 'name' or 'nom' key");
+            return name;
         }
 
         @Named("mapAttributesToPrice")
         default float mapAttributesToPrice(Map<String, String> attributes) {
-            if (attributes == null || !attributes.containsKey("price")) {
-                throw new IllegalArgumentException("Attributes must contain a 'price' key");
-            }
-            return Float.parseFloat(attributes.get("price"));
+            if (attributes == null) throw new IllegalArgumentException("Attributes map is null");
+            String price = attributes.getOrDefault("price", attributes.get("prix"));
+            if (price == null) throw new IllegalArgumentException("Attributes must contain a 'price' or 'prix' key");
+            return Float.parseFloat(price);
         }
 
         @Named("mapAttributesToInfos")
@@ -39,7 +39,10 @@ public class ArticleExternalInterface {
             if (attributes == null) {
                 return Map.of();
             }
-            return attributes.entrySet().stream().filter(val -> !val.getKey().equals("name") && !val.getKey().equals("price")).collect(java.util.stream.Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+            return attributes.entrySet().stream()
+                    .filter(entry -> !entry.getKey().equals("name") && !entry.getKey().equals("nom") &&
+                                     !entry.getKey().equals("price") && !entry.getKey().equals("prix"))
+                    .collect(java.util.stream.Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         }
     }
 

@@ -11,7 +11,7 @@ public class MockDDD {
 
     }
 
-    public void WriteReport(ArticleExternalInterface article) {
+    public void importExtArt(ArticleExternalInterface article) {
         XmlMapper xmlMapper = new XmlMapper();
         try {
             String xml = xmlMapper.writeValueAsString(article);

@@ -9,7 +9,7 @@ public class MockABC {
 
     }
 
-    public String GenerateReport(int idProduct) {
+    public String genererRapport(int idProduct) {
         return scanner.nextLine();
     }
 }

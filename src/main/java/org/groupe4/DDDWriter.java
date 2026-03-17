@@ -14,6 +14,6 @@ public class DDDWriter implements OutputWriter {
     @Override
     public void writeNext(Product product) {
         ArticleExternalInterface article = ArticleExternalInterface.ProductMapper.INSTANCE.toExternal(product);
-        mockDDD.WriteReport(article);
+        mockDDD.importExtArt(article);
     }
 }
