@@ -18,11 +18,11 @@
 
 
         jdk = pkgs.jdk21;
-        mvnHash = "sha256-EiI8bzQKgcBtGmAU7Oczu1EssEo3nr1Pd+tALUJqtPw=";
+        mvnHash = "sha256-0G1vq2xFRgYq5dxAuSJP3wKMSw1vP8aemUcSPMyS6AA=";
 
         installPhase = ''
           mkdir -p $out/share/java
-          cp target/*.jar $out/share/java/app.jar
+          cp target/*.jar $out/share/java
         '';
 
       };
